@@ -80,6 +80,8 @@
 		close_stream: string;
 		generate: never;
 	}>;
+	export let options: string[] = [];
+  	export let default_option: string | null = null;
 
 	let old_value: null | FileData = null;
 
@@ -242,6 +244,8 @@
 			}}
 			on:drag={({ detail }) => (dragging = detail)}
 			{root}
+			{options}
+			{default_option}
 			{sources}
 			{active_source}
 			{pending}

@@ -9,10 +9,10 @@
   export let rows = 8;
   export let disabled = false;
 
-  const options = ["Molly", "Tarron"] as const;
-  type Choice = (typeof options)[number] | null;
+  export let options: string[] = ["Option1", "Option2"];
+  type Choice = string | null;
 
-  export let defaultChoice: Choice = "Molly";
+  export let defaultChoice: Choice = options[0] ?? null;
   let selected: Choice = defaultChoice;
 
   const dispatch = createEventDispatcher<{
@@ -23,6 +23,11 @@
     const text = value.trim();
     if (!text || !selected) return;
     dispatch("generate", { text, choice: selected });
+  }
+
+  // if options change at runtime, keep selection valid
+  $: if (selected && !options.includes(selected)) {
+    selected = options[0] ?? null;
   }
 
   function onKeydown(e: KeyboardEvent) {
@@ -57,19 +62,14 @@
     />
 
     <div class="controls">
-      <div
-        class="radios"
-        role="radiogroup"
-        aria-label="Choose one"
-        tabindex="0" 
-        on:keydown={onRadioKeydown}
-      >
-        {#each options as opt}
+      <div class="radios" role="radiogroup" aria-label="Choose one" tabindex="0" on:keydown={onRadioKeydown}>
+        {#each options as opt, i}
           <button
             type="button"
             class="radio {selected === opt ? 'selected' : ''}"
             role="radio"
             aria-checked={selected === opt}
+            tabindex={selected === opt ? 0 : -1}
             on:click={() => (selected = opt)}
           >
             {opt}
@@ -220,7 +220,7 @@
   transition: background 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
 }
 .radio:hover {
-  background: var(--neutral-200, #e5e7eb);
+  color: var(--accent);
 }
 .radio.selected {
   background: var(--accent);
@@ -234,7 +234,7 @@
 
 /* Primary action button, aligned with the “accent” look */
 .generate {
-  height: 30px;
+  height: 32px;
   padding: 0 14px;
   border: 1px solid var(--accent);
   border-radius: var(--radius-pill);

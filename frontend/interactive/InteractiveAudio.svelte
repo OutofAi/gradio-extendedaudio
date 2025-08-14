@@ -46,7 +46,8 @@
 	export let uploading = false;
 	export let recording = false;
 	export let class_name = "";
-
+  	export let options: string[] = [];          
+  	export let default_option: string | null = null; 
 	
 
 	let time_limit: number | null = null;
@@ -298,13 +299,15 @@
 		{:else if active_source === "speech"}
 			<ModifyUpload {i18n} on:clear={clear} />
 			<AudioSpeech
-				on:generate={handleGenerate}
 				{i18n}
 				{editable}
 				{recording}
 				{waveform_settings}
 				{waveform_options}
 				{handle_reset_value}
+			    options={options}                             
+    			defaultChoice={default_option ?? options[0] ?? null}  
+				on:generate={handleGenerate}
 			/>
 
 		{:else if active_source === "upload"}

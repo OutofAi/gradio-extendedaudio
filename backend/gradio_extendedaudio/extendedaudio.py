@@ -84,6 +84,8 @@ class ExtendedAudio(
         self,
         value: str | Path | tuple[int, np.ndarray] | Callable | None = None,
         *,
+        options: list[str] | None = None,
+        default_option: str | None = None,
         sources: list[Literal["upload", "microphone", "speech"]]
         | Literal["upload", "microphone", "speech"]
         | None = None,
@@ -145,6 +147,13 @@ class ExtendedAudio(
             loop: If True, the audio will loop when it reaches the end and continue playing from the beginning.
             recording: If True, the audio component will be set to record audio from the microphone if the source is set to "microphone". Defaults to False.
         """
+
+        self.options = options or ["Option1", "Option2"]
+        
+        self.default_option = (
+            default_option if default_option in self.options else self.options[0]
+        )
+
         valid_sources: list[Literal["upload", "microphone", "speech"]] = ["upload", "microphone", "speech"]
         if sources is None:
             self.sources = ["microphone"] if streaming else valid_sources
