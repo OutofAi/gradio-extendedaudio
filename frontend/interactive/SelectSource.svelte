@@ -3,6 +3,7 @@
 
 	type source_types = "speech" | "upload" | "microphone" | "webcam" | "clipboard" | null;
 
+	export let value: null | FileData | SpeechRequest = null;
 	export let sources: Partial<source_types>[];
 	export let active_source: Partial<source_types>;
 	export let handle_clear: () => void = () => {};
@@ -27,7 +28,7 @@
 		{#if sources.includes("upload")}
 			<button
 				class="icon"
-				class:selected={active_source === "upload" || !active_source}
+				class:selected={(active_source === "upload" || !active_source) && value === null}
 				aria-label="Upload file"
 				on:click={() => handle_select_source("upload")}><Upload /></button
 			>
@@ -36,7 +37,7 @@
 		{#if sources.includes("microphone")}
 			<button
 				class="icon"
-				class:selected={active_source === "microphone"}
+				class:selected={(active_source === "microphone") && value === null}
 				aria-label="Record audio"
 				on:click={() => handle_select_source("microphone")}
 				><Microphone /></button
@@ -46,7 +47,7 @@
 		{#if sources.includes("speech")}
 			<button
 				class="icon"
-				class:selected={active_source === "speech" || !active_source}
+				class:selected={(active_source === "speech" ) && value === null}
 				aria-label="Text to Speech"
 				on:click={() => handle_select_source("speech")}><Chat/></button
 			>

@@ -360,7 +360,7 @@
 		/>
 	{/if}
 
-	<SelectSource {sources} bind:active_source handle_clear={clear} />
+	<SelectSource {sources} {value} bind:active_source handle_clear={clear} />
 </div>
 
 <style>
