@@ -148,7 +148,7 @@ class ExtendedAudio(
             recording: If True, the audio component will be set to record audio from the microphone if the source is set to "microphone". Defaults to False.
         """
 
-        self.options = options or ["Option1", "Option2"]
+        self.options = options or ["Option1"]
         
         self.default_option = (
             default_option if default_option in self.options else self.options[0]
