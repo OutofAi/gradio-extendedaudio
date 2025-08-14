@@ -1,37 +1,7 @@
-An extended tab/option to the standard gradio.Audio to dispatch a generate event, useful for hooking up text-to-speech foundation models
-
-
-## Wheel Generation:
-```python
-git clone https://github.com/OutofAi/gradio-extendedaudio
-```
-
-```python
-cd extendedaudio/frontend
-```
-
-```python
-npm install
-```
-
-```python
-cd ..
-```
-
-```python
-gradio cc install 
-```
-
-```python
-gradio cc build 
-```
-
-## Example Usage
-
-```python
 
 import gradio as gr
 from gradio_extendedaudio import ExtendedAudio
+
 
 def internal_fn(evt: gr.EventData):
     # You Text-to-Speech inference code should be done here
@@ -47,5 +17,3 @@ with gr.Blocks() as demo:
 
 if __name__ == "__main__":
     demo.launch()
-
-```
