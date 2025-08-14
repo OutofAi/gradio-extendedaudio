@@ -2,10 +2,9 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
-  export let title = "Text-to-Speech";          
   export let value = "";
   export let placeholder = "Type your text here…";
-  export let buttonLabel = "Generate";
+  export let buttonLabel = "Text to Speech";
   export let rows = 8;
   export let disabled = false;
 
@@ -49,7 +48,6 @@
 </script>
 
 <div class="wrapper">
-  <h2 class="title" id="sgb-title">{title}</h2>   <!-- ⬅️ NEW -->
   <div class="box" aria-labelledby="sgb-title">
     <label class="sr-only" for="gen-input">Text input</label>
     <textarea
@@ -62,20 +60,22 @@
     />
 
     <div class="controls">
-      <div class="radios" role="radiogroup" aria-label="Choose one" tabindex="0" on:keydown={onRadioKeydown}>
-        {#each options as opt, i}
-          <button
-            type="button"
-            class="radio {selected === opt ? 'selected' : ''}"
-            role="radio"
-            aria-checked={selected === opt}
-            tabindex={selected === opt ? 0 : -1}
-            on:click={() => (selected = opt)}
-          >
-            {opt}
-          </button>
-        {/each}
-      </div>
+      {#if options.length > 1}
+        <div class="radios" role="radiogroup" aria-label="Choose one" tabindex="0" on:keydown={onRadioKeydown}>
+          {#each options as opt, i}
+            <button
+              type="button"
+              class="radio {selected === opt ? 'selected' : ''}"
+              role="radio"
+              aria-checked={selected === opt}
+              tabindex={selected === opt ? 0 : -1}
+              on:click={() => (selected = opt)}
+            >
+              {opt}
+            </button>
+          {/each}
+        </div>
+      {/if}
 
       <button
         class="generate"
@@ -148,14 +148,6 @@
 /* ---- Your component styles (now using the bridged tokens) ---- */
 
 .wrapper { width: 100%; }
-
-.title {
-  margin: 0 0 var(--space-2) 0;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--fg);
-  text-align: center;
-}
 
 .box {
   position: relative;
