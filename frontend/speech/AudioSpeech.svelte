@@ -194,8 +194,6 @@
 .radios {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   padding: 3px;
   background: var(--seg-bg);
 }
@@ -215,8 +213,8 @@
   color: var(--accent);
 }
 .radio.selected {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: transparent;
+  color: var(--accent);
   border-color: var(--accent);
 }
 .radio:focus-visible {
