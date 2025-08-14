@@ -3,7 +3,7 @@
 	import { Upload, ModifyUpload } from "@gradio/upload";
 	import { prepare_files, type FileData, type Client } from "@gradio/client";
 	import { BlockLabel } from "@gradio/atoms";
-	import { Music } from "@gradio/icons";
+	import { Music, Chat } from "@gradio/icons";
 	import { StreamingBar } from "@gradio/statustracker";
 	import AudioPlayer from "../player/AudioPlayer.svelte";
 
@@ -326,6 +326,11 @@
 			>
 				<slot />
 			</Upload>
+			<p class="tts-support">
+					Now with Text-to-Speech support, click
+				<span class="tts-icon"><Chat /></span> 
+				to try it! - 
+			</p>
 		{/if}
 	{:else}
 		<ModifyUpload
@@ -354,10 +359,35 @@
 			on:edit
 		/>
 	{/if}
+
 	<SelectSource {sources} bind:active_source handle_clear={clear} />
 </div>
 
 <style>
+	.tts-support {
+		text-align: center;
+		font-size: 0.85rem;
+		margin-top: var(--spacing-sm);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		gap: 0.3em;
+		background-color: var(--neutral-600);
+	}
+
+	.tts-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.tts-icon :global(svg) {
+		width: 16px;  /* adjust as needed */
+		height: 16px;
+		color: var(--color-accent);
+	}
+
 	.audio-container {
 		height: calc(var(--size-full) - var(--size-6));
 		display: flex;
