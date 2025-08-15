@@ -48,6 +48,7 @@
 	export let class_name = "";
   	export let options: string[] = [];          
   	export let default_option: string | null = null; 
+	export let text_value = ""
 	
 
 	let time_limit: number | null = null;
@@ -300,6 +301,7 @@
 		{:else if active_source === "speech"}
 			<ModifyUpload {i18n} on:clear={clear} />
 			<AudioSpeech
+				bind:text_value
 				{i18n}
 				{editable}
 				{recording}

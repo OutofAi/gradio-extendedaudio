@@ -2,7 +2,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
-  export let value = "";
+  export let text_value = "";
   export let placeholder = "Type your text here…";
   export let buttonLabel = "Text to Speech";
   export let rows = 8;
@@ -19,7 +19,7 @@
   }>();
 
   function submit() {
-    const text = value.trim();
+    const text = text_value.trim();
     if (!text || !selected) return;
     dispatch("generate", { text, choice: selected });
   }
@@ -54,7 +54,7 @@
       id="gen-input"
       class="input"
       {rows}
-      bind:value={value}
+      bind:value={text_value}
       placeholder={placeholder}
       on:keydown={onKeydown}
     />
@@ -81,8 +81,8 @@
         class="generate"
         type="button"
         on:click={submit}
-        disabled={disabled || !value.trim() || !selected}
-        aria-disabled={disabled || !value.trim() || !selected}
+        disabled={disabled || !text_value.trim() || !selected}
+        aria-disabled={disabled || !text_value.trim() || !selected}
       >
         {buttonLabel}
       </button>
