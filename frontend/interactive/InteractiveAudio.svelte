@@ -80,6 +80,7 @@
 	let pending_stream: Uint8Array[] = [];
 	let submit_pending_stream_on_pending_end = false;
 	let inited = false;
+	let height = 135;
 
 	const NUM_HEADER_BYTES = 44;
 	let audio_chunks: Blob[] = [];
@@ -263,7 +264,7 @@
 <BlockLabel
 	{show_label}
 	Icon={Music}
-	float={active_source === "upload" && value === null}
+	float={false}
 	label={label || i18n("audio.audio")}
 />
 <div class="audio-container {class_name}">
@@ -323,6 +324,7 @@
 				{upload}
 				{stream_handler}
 				aria_label={i18n("audio.drop_to_upload")}
+				{height}
 			>
 				<slot />
 			</Upload>

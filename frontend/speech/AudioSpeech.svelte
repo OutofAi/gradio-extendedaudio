@@ -163,7 +163,7 @@
 .input {
   box-sizing: border-box;
   width: 100%;
-  height: 120px;
+  height: 150px;
   padding: var(--space-3) var(--space-3) calc(64px + var(--space-3)) var(--space-3);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -194,6 +194,8 @@
 .radios {
   display: inline-flex;
   align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 3px;
   background: var(--seg-bg);
 }
@@ -213,8 +215,8 @@
   color: var(--accent);
 }
 .radio.selected {
-  background: transparent;
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-foreground);
   border-color: var(--accent);
 }
 .radio:focus-visible {
