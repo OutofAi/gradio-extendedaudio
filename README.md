@@ -1,5 +1,7 @@
-An extended tab/option to the standard gradio.Audio to dispatch a generate event, useful for hooking up text-to-speech foundation models
+![addition](https://github.com/user-attachments/assets/c6615c87-336b-4a0c-b0bb-7173378b1405)
 
+
+An extended tab/option to the standard gradio.Audio to dispatch a generate event, useful for hooking up text-to-speech foundation models
 
 ## Wheel Generation:
 ```python
